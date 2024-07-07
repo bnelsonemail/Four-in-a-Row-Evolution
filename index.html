@@ -1,22 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Connect 4</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Four-in-a-Row Evolution</title>
   <link href="connect4.css" rel="stylesheet">
+  <script src="connect4.js" defer></script>
 </head>
 <body>
 <div>
   <form>
-    <label for="player1">Player 1 Color</label>
-    <input type="text" id="player1-color" name="player1-color">
-    <label for="player2">Player 2 Color</label>
-    <input type="text" id="player2-color" name="player2-color">
+    <label for="player1">Player 1 Color Choice:</label>
+    <input type="text" id="player1-color" name="player1-color" placeholder="Player 1 Color">
+    <label for="player2">Player 2 Color Choice:</label>
+    <input type="text" id="player2-color" name="player2-color" placeholder="Player 2 Color">
   </form>
+  <input type="button" value="Start Game" id="start-btn">
 </div>
+
 <div id="game">
   <table id="board"></table>
 </div>
-
-<script src="connect4.js"></script>
+<div>
+  <input type="button" value="Restart Game" id="restart-btn">
+</div>
 
 </body>
 </html>

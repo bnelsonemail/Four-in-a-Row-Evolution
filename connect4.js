@@ -11,6 +11,32 @@ const HEIGHT = 6;
 let currPlayer = 1; // active player: 1 or 2
 let board = []; // array of rows, each row is array of cells  (board[y][x])
 
+
+
+class Game {
+  constructor(p1, p2, height = 6, width = 7){
+    this.players = [p1, p2];
+    this.height = height;
+    this.width = width;
+    this.currPlayer = p1;
+    this.makeBoard();
+    this.makeHtmlBoard();
+    this.gameOver = false;
+  }
+
+  /** makeBoard: create in-JS board structure:
+   *   board = array of rows, each row is array of cells  (board[y][x])
+   */
+  makeBoard(){
+    this.board = [];
+    for (let y = 0; y < this.height; y++){
+      this.board.push(Array.from({length: this.width}));
+    }
+  }
+
+}
+
+
 /** makeBoard: create in-JS board structure:
  *   board = array of rows, each row is array of cells  (board[y][x])
  */
