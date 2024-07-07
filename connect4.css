@@ -1,9 +1,20 @@
 /* game board table */
+html {
+  background-color: blueviolet;
+}
+
+body {
+  padding: 5rem;
+}
+
 
 #board td {
+  
+  align-items: center;
   width: 50px;
   height: 50px;
   border: solid 1px #666;
+  background-color: white;
 }
 
 /* pieces are div within game table cells: draw as colored circles */
@@ -27,8 +38,32 @@
 
 #column-top td {
   border: dashed 1px lightgray;
+  background-color: gold;
 }
 
 #column-top td:hover {
-  background-color: gold;
+  background-color: rgb(16, 205, 230);
+}
+
+#start-game {
+  background-color: blue;
+  color: white;
+  text-shadow: darkred;
+  font-size: 1.2rem;
+  font-family: cursive;
+  cursor: pointer;
+  font-weight: 600;
+  margin: 1.5rem;
+}
+
+#start-game:hover {
+  background-color: red;
+  transition: .8s;
+}
+
+.player-text {
+  font-size: 1.2rem;
+  font-family: cursive;
+  font-weight: 400;
+  color: white;
 }

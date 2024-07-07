@@ -5,12 +5,6 @@
  * board fills (tie)
  */
 
-const WIDTH = 7;
-const HEIGHT = 6;
-
-let currPlayer = 1; // active player: 1 or 2
-let board = []; // array of rows, each row is array of cells  (board[y][x])
-
 
 
 class Game {
@@ -86,7 +80,7 @@ class Game {
   placeInTable(y, x) {
     const piece = document.createElement('div');
     piece.classList.add('piece');
-    piece.classList.add(`p${currPlayer}`);
+    piece.style.backgroundColor = this.currPlayer.color
     piece.style.top = -50 * (y + 2);
 
     const spot = document.getElementById(`${y}-${x}`);
@@ -131,27 +125,29 @@ class Game {
       
     // switch players
     this.currPlayer = 
-    this.currPlayer === this.players[0] ? this.player[1] : this.players [0];
+    this.currPlayer === this.players[0] ? this.players[1] : this.players[0];
   }
-// TODO: This is where I left off.  checkForWin needs to be refactored
-  function checkForWin() {
-    function _win(cells) {
+
+
+/** checkForWin: check board cell-by-cell for "does a win start here?" */
+  checkForWin() {
+    
       // Check four cells to see if they're all color of current player
       //  - cells: list of four (y, x) cells
       //  - returns true if all are legal coordinates & all match currPlayer
-  
-      return cells.every(
+    const _win = cells => 
+      cells.every(
         ([y, x]) =>
           y >= 0 &&
-          y < HEIGHT &&
+          y < this.height &&
           x >= 0 &&
-          x < WIDTH &&
-          board[y][x] === currPlayer
+          x < this.width &&
+          this.board[y][x] === this.currPlayer
       );
-    }
+    
   
-    for (let y = 0; y < HEIGHT; y++) {
-      for (let x = 0; x < WIDTH; x++) {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
         // get "check list" of 4 cells (starting here) for each of the different
         // ways to win
         const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
@@ -166,8 +162,27 @@ class Game {
       }
     }
   }
+}
 
+document.getElementById('start-game').addEventListener('click', () => {
+  let p1 = new Player(document.getElementById('p1-color').value);
+  let p2 = new Player(document.getElementById('p2-color').value);
+  
+  // Use an if statement to throw an alert and error if users choose the same color
+  if(p1.color === p2.color) {
+      alert('Must choose two different colors')
+      throw new Error('Must choose two different colors!!')
+    }
+  new Game (p1, p2)
+});
 
+class Player {
+  constructor (color) {
+    this.color = color;
+    
+
+   
+  }
 }
 
 
@@ -177,9 +192,7 @@ class Game {
 
 
 
-/** checkForWin: check board cell-by-cell for "does a win start here?" */
 
 
 
-makeBoard();
-makeHtmlBoard();
+
